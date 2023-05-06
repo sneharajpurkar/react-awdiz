@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './Register.css';
+import {toast} from 'react-hot-toast';
 
 function Register(props) {
     const [userData, setUserData] = useState({ name: "", email: "", password: "" });
@@ -18,6 +19,8 @@ function Register(props) {
         usersFromDB.push(userData);
         localStorage.setItem("userData", JSON.stringify(usersFromDB));
         setUserData({ name: "", email: "", password: "" });
+        console.log(setUserData);
+        // toast.success("Registration Done...");
 
         var flag = false;
 
@@ -26,19 +29,19 @@ function Register(props) {
                 flag = true;
             }
         }
-        if (flag === true) {
+        if (flag) {
             setUserData({ name: "", email: "", password: "" })
             router('/login')
-            alert("Registration Done.");
+            toast.success("Registration Done.");
         } else {
-            alert("Email already Present, User another one.");
+            toast.error("Email already Present, User another one.");
         }
     }
 
     function updatingData(e) {
         var name = e.target.name;
         var value = e.target.value;
-        // console.log(e.target.name, e.target.value, "updatingData");
+            // console.log(e.target.name, e.target.value, "updatingData");
         setUserData({ ...userData, [name]: value })
     }
 
@@ -68,7 +71,6 @@ function Register(props) {
                     <button>Have a referral code?</button><br />
                     <input id="input" type="submit" value="REGISTER" />
                     <div>By creating an account, I accept the Terms & Conditions & Privacy Policy</div>
-
                 </form>
             </div>
         </div>

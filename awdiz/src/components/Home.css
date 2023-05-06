@@ -31,7 +31,18 @@
   height: 60px;
 }
 
-#content>div:nth-child(1)>div:nth-child(2)>button {
+#content>div:nth-child(1)>div:nth-child(2)>button{
+  height: 50px;
+  width: 110px;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: orangered;
+  color: white;
+}
+
+#content>div:nth-child(1)>div:nth-child(2)>div>button {
   height: 40px;
   width: 100px;
   border: none;
@@ -40,11 +51,11 @@
   cursor: pointer;
 }
 
-#content>div:nth-child(1)>div:nth-child(2)>button:nth-child(1) {
+#content>div:nth-child(1)>div:nth-child(2)>div>button:nth-child(1) {
   background-color: white;
 }
 
-#content>div:nth-child(1)>div:nth-child(2)>button:nth-child(2) {
+#content>div:nth-child(1)>div:nth-child(2)>div>button:nth-child(2) {
   background-color: black;
   color: white;
 }
@@ -208,7 +219,7 @@ form>label {
 form>input {
   height: 40px;
   width: 350px;
-  border: 1px solid grey;
+  border: 1px solidn orangered;
   outline: none;
   font-size: 16px;
 }
@@ -312,7 +323,7 @@ form>label {
 form>input {
   height: 40px;
   width: 350px;
-  border: 1px solid green;
+  border: 1px solid orangered;
   outline: none;
   font-size: 16px;
 }
@@ -330,4 +341,59 @@ form>input {
 form>div {
   margin-top: 5px;
   font-size: 12px;
+}
+
+/* Add products */
+#body1{
+  width: 100%;
+}
+#addProducts{
+  background-color: white;
+  width: 35%;
+  height: 747px;
+  border: 1px solid ;
+}
+#top1{
+  display: flex;
+  margin-top: 100px;
+  margin-left: 50px;
+}
+#top1>div:nth-child(1){
+  font-size: 30px;
+  font-weight: bold;
+}
+#top1>div:nth-child(2) {
+  margin-left: 100px;
+}
+
+#top1>div:nth-child(2)>img {
+  width: 100px;
+  height: 100px;
+}
+form {
+  margin-top: 40px;
+  width: 350px;
+  margin-left: 50px;
+}
+
+form>label {
+  margin-top: 50px;
+  font-size: 18px;
+}
+
+form>input {
+  height: 40px;
+  width: 350px;
+  border: 1px solid orangered;
+  outline: none;
+  font-size: 16px;
+}
+#input1 {
+  margin-top: 20px;
+  width: 355px;
+  border: none;
+  outline: none;
+  background-color: orangered;
+  color: white;
+  cursor: pointer;
 }

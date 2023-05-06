@@ -1,18 +1,21 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './Login.css';
+import {toast} from 'react-hot-toast';
 
 function Login(props) {
     const [userData, setUserData] = useState({ email: "", password: "" });
+    console.log(userData, "userData");
+
     const router = useNavigate();
     // console.log(userData, "userData check here");
 
+    var usersFromDB = JSON.parse(localStorage.getItem("userData"));
+        console.log(usersFromDB,"hello");
+
     function handleSubmit(event) {
+
         event.preventDefault();
-        var usersFromDB = JSON.parse(localStorage.getItem("userData")) || [];
-        usersFromDB.push(userData);
-        localStorage.setItem("userData", JSON.stringify(usersFromDB));
-        setUserData({ email: "", password: "" });
 
         var flag = false;
 
@@ -21,15 +24,15 @@ function Login(props) {
                 flag = true;
             }
         }
-        if (flag === true) {
-            setUserData({ email: "", password: "" })
+        if (flag) {
             var user = {};
             user["current-user-email"] = userData.email;
             localStorage.setItem("current-user", JSON.stringify(user))
-            router('/home')
-            alert("Login Done...");
+            router('/Homepage')
+            setUserData({ email: "", password: "" })
+            toast.success("Login Done...");
         } else {
-            alert("Please check email and password");
+            toast.error("Please check email and password");
         }
     }
 

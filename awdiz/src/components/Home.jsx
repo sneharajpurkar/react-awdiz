@@ -1,11 +1,15 @@
 import './Home.css';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Register from './Register';
 import Login from './Login';
+import { useNavigate } from 'react-router-dom';
+import  toast  from "react-hot-toast";
 
 function Home() {
     const [showSignUpPage, setShowSignUpPage] = useState(false);
     const [showLoginPage, setShowLoginPage] = useState(false);
+    const [currentUser, setCurrentUser] = useState(false);
+    const route = useNavigate();
 
     function display(value) {
         if (value === 'register') {
@@ -19,13 +23,24 @@ function Home() {
 
     }
     function closePage(value) {
-        if(value === 'register'){
-          setShowSignUpPage(false);
+        if (value === 'register') {
+            setShowSignUpPage(false);
         }
-        else{
-          setShowLoginPage(false);
+        else {
+            setShowLoginPage(false);
         }
-        
+
+    }
+    useEffect(() => {
+        var usersFromDB = JSON.parse(localStorage.getItem("current-user"));
+        if (usersFromDB) {
+          setCurrentUser(true);
+        }
+      }, []);
+    function logout() {
+        localStorage.removeItem("current-user");
+        setCurrentUser(false);
+        toast.success("Logout");
       }
 
     return (
@@ -42,8 +57,14 @@ function Home() {
                                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqpHDFHQXYclFyO5rYKUOYQmPT8OrWucjftg&usqp=CAU" alt="swiggy" />
                                 </div>
                                 <div>
-                                    <button onClick={() => display('login')}>Login</button>
-                                    <button onClick={() => display('register')}>Sign up</button>
+                                    {currentUser ? (
+                                        <button onClick={() => logout()}>Logout</button>
+                                    ) : (
+                                        <div>
+                                            <button onClick={() => display('login')}>Login</button>
+                                            <button onClick={() => display('register')}>Sign up</button>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                             <div>
@@ -52,7 +73,7 @@ function Home() {
                             </div>
                             <div>
                                 <input type="text" placeholder="Enter your delivery location" />
-                                <input type="submit" value="FIND FOOD" />
+                                <input onClick={() => route("/homepage")} type="submit" value="FIND FOOD" />
                             </div>
                             <div>
                                 <div>POPULAR CITIES IN INDIA</div>
