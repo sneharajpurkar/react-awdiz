@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import AuthProvider from './context/auth-provider';
 import { Toaster } from 'react-hot-toast';
 import { createContext } from 'react';
 
@@ -40,9 +39,7 @@ root.render(
         }}
       />
       <UserContext.Provider value={"sneha"}>
-        <AuthProvider>
         <App />
-        </AuthProvider>
       </UserContext.Provider>
 
     </BrowserRouter>

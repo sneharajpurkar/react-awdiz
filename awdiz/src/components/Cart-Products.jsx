@@ -1,20 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useReducer } from "react";
-import Reducer, {initialState} from "../Reducer3/reducer";
 import "./Cart.css";
 
 function Cart() {
-    const [state, dispatch] = useReducer(Reducer, initialState)
-    console.log(state, "state")
-    
-    function handleButtonClick(){
-        dispatch({type: 'incremented_age'})
-    }
-
-    function handleButtonClickForDec(){
-        dispatch({type: 'decremented_age'})
-    }
     const [userStatus, setUserStatus] = useState(false);
     const [cartData, setCartData] = useState();
     const [userName, setUserName] = useState("");
