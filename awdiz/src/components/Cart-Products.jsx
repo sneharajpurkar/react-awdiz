@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-hot-toast';
 import "./Cart.css";
 
 function Cart() {
@@ -7,7 +8,7 @@ function Cart() {
     const [cartData, setCartData] = useState();
     const [userName, setUserName] = useState("");
     const route = useNavigate();
-    const [userloginData, setUserLoginData] = useState("")
+    const [userloginData, setUserLoginData] = useState("");
     useEffect(() => {
         displayCart();
     }, []);
@@ -23,14 +24,20 @@ function Cart() {
         setUserLoginData(currentUser);
 
         for (var i = 0; i < usersFromDB.length; i++) {
-            if (usersFromDB[i].email === currentUser['current-user-email'] && usersFromDB[i].cartData) {
+            if (usersFromDB[i].email === currentUser.email && usersFromDB[i].cartData) {
                 setUserStatus(true);
                 setUserName(usersFromDB[i].name);
                 setCartData(usersFromDB[i].cartData);
             }
         }
-
     }
+
+    function logout() {
+        localStorage.removeItem("current-user");
+        route('/')
+        toast.success("Logout");
+    }
+
     return (
         <div id="cart">
             <div>
@@ -50,13 +57,16 @@ function Cart() {
                     </div>
 
                     <div className="navbar-r adjust-width-r">
-                        <div>
+                        <div className="navbar-r adjust-width-r-icon">
                             <i className="fa-regular fa-circle-question"></i>
                             <p>Help</p>
                         </div>
-                        <div>
+                        <div className="navbar-r adjust-width-r-icon">
                             <i className="fa-regular fa-user"></i>
                             {userloginData ? <p>{userName}</p> : <p onClick={() => { GotoSignin() }}>Log in </p>}
+                        </div>
+                        <div>
+                            <button className="buttonn" onClick={() => logout()}>Logout</button>
                         </div>
                     </div>
                 </div>
@@ -70,10 +80,10 @@ function Cart() {
                                 <div className="cart-order-l-userInfo">
                                     <i className="fa-solid fa-user"></i>
                                     <p>Logged in</p>
-                                    <i className="fa-solid fa-circle-check"></i>
+                                    {/* <i className="fa-solid fa-circle-check"></i> */}
                                 </div>
                                 <div className="cart-order-l-user-details">
-                                    <p>Sneha</p>
+                                    <p>{userName}</p>
                                 </div>
                             </div>
 
@@ -117,7 +127,7 @@ function Cart() {
                                             </div>
                                             {/* <div id="reducer"><button onClick={handleButtonClick}>+</button><h6>Quantity{state.age}</h6><button onClick={handleButtonClickForDec}>-</button></div> */}
                                         </div>
-                                        
+
                                     ))}
 
                             </div>

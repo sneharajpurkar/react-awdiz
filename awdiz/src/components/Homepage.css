@@ -38,7 +38,7 @@
 }
 
 #right-side {
-    width: 50%;
+    width: 56%;
     display: flex;
     justify-content: space-evenly;
     margin-top: 25px;
@@ -74,6 +74,21 @@ sup{
     background-color: orangered;
     color: white;
     width: 70px;
+}
+#right-side-icon{
+    display: flex;
+}
+#right-side-icon>i{
+    margin-top: 4px;
+    margin-right: 5px;
+}
+#right-side-icon-three{
+    padding-top: 20px;
+    display: flex;
+}
+#right-side-icon-three>i{
+     margin-top: 4px;
+    margin-right: 5px;
 }
 #header {
     width: 100%;

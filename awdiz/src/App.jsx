@@ -16,7 +16,7 @@ function App() {
     <div>
       <Routes>
         <Route exact path='/navbar' element={<Navbar />} />
-        <Route exact path='/home' element={<Home />} />
+        <Route exact path='/' element={<Home />} />
         <Route exact path='/homepage' element={<Homepage />} />
         <Route exact path='/homepage/:idDrink' element={<SingleProductpage/>}/>
         <Route exact path='/register' element={<Register />} />

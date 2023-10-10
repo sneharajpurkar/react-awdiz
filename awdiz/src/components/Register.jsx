@@ -31,7 +31,7 @@ function Register(props) {
         }
         if (flag) {
             setUserData({ name: "", email: "", password: "" })
-            router('/login')
+            // router('/login')
             toast.success("Registration Done.");
         } else {
             toast.error("Email already Present, User another one.");
@@ -48,7 +48,7 @@ function Register(props) {
     return (
         <div id="register1">
             <div id="register">
-                <div onClick={props.onClose}>X</div>
+                <div className="close" onClick={props.onClose}>X</div>
                 <div id="top">
                     <div>
                         <div>Sign up</div>
@@ -63,7 +63,7 @@ function Register(props) {
                 </div>
                 <form onSubmit={(event) => handleSubmit(event)}>
                     <label>Name</label><br />
-                    <input onChange={updatingData} name='name' value={userData.name} type="text" /><br />
+                    <input onChange={updatingData} name='name' value={userData.name} type="text" required /><br />
                     <label>Email</label><br />
                     <input onChange={updatingData} name='email' value={userData.email} type="email" /><br />
                     <label>Password</label><br />

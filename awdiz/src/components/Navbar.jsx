@@ -3,23 +3,23 @@ import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 function Navbar() {
     const route = useNavigate();
-    const [user, setUser] = useState(null);
+    const [users, setUsers] = useState(null);
     const [searchData, setSearchData] = useState(" ");
 
     useEffect(() => {
         var usersFromDB = JSON.parse(localStorage.getItem("userData"));
         var currentUser = JSON.parse(localStorage.getItem("current-user"));
+        console.log(currentUser, "currentUser")
 
-        if (currentUser) {
-            for (var i = 0; i < usersFromDB.length; i++) {
-                if (usersFromDB[i].email === currentUser) {
-                    setUser(usersFromDB[i].name);
-                }
+        for (var i = 0; i < usersFromDB.length; i++) {
+            if (usersFromDB[i].email === currentUser.email) {
+                setUsers(currentUser.name);
+            } else {
+                setUsers(null);
             }
-        } else {
-            setUser(null);
         }
-    }, []);
+    })
+
     function goto() {
         route("/cart");
     }
@@ -27,12 +27,12 @@ function Navbar() {
     function registerPage() {
         route("/register");
     }
-    function handleChange(e){
+    function handleChange(e) {
         setSearchData(e.target.value)
     }
 
-    function handleSubmit(){
-        if(searchData) {
+    function handleSubmit() {
+        if (searchData) {
             route(`/search/${searchData}`)
         }
     }
@@ -53,33 +53,35 @@ function Navbar() {
                         {/* <i className="fa-solid fa-magnifying-glass"></i> */}
                         <input onChange={(e) => handleChange(e)} type="text" /><button onClick={handleSubmit}>Search</button>
                     </div>
-                    <div>
+                    <div id='right-side-icon'>
                         <i className="fa-solid fa-tags"></i>
-                        Offers<sup>New</sup>
+                        <p>Offers<sup>New</sup></p>
                     </div>
-                    <div>
+                    <div id='right-side-icon'>
                         <i className="fa-regular fa-circle-question"></i>
-                        Help
+                        <p>Help</p>
                     </div>
-                    {user ? (
-                        <div>
+                    {users ? (
+                        <div id='right-side-icon-three'>
                             <i className="fa-regular fa-user"></i>
-                            <p>{user} </p>{" "}
+                            <p>{users} </p>
                         </div>
                     ) : (
                         <div
                             onClick={() => {
                                 registerPage();
                             }}
+                            id='right-side-icon-three'
                         >
                             <i className="fa-regular fa-user"></i>
-                            <p id='sign.in'>Sign In </p>
+                            <p id='sign.in'>Sign In</p>
                         </div>
                     )}
                     <div
                         onClick={() => {
                             goto();
                         }}
+                        id='right-side-icon-three'
                     >
                         <i className="fa-solid fa-cart-shopping"></i>
                         <p>Cart</p>

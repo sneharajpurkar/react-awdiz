@@ -18,15 +18,16 @@ function Login(props) {
         event.preventDefault();
 
         var flag = false;
+        var user;
 
         for (var i = 0; i < usersFromDB.length; i++) {
             if (usersFromDB[i].email === userData.email && usersFromDB[i].password === userData.password) {
                 flag = true;
+                user = usersFromDB[i];
             }
         }
         if (flag) {
-            var user = {};
-            user["current-user-email"] = userData.email;
+            // user["current-user-email"] = userData;
             localStorage.setItem("current-user", JSON.stringify(user))
             router('/Homepage')
             setUserData({ email: "", password: "" })
@@ -46,7 +47,9 @@ function Login(props) {
     return (
         <div id="login1">
             <div id="register">
-                <div onClick={props.onClose}>X</div>
+                <div className="close
+                
+                " onClick={props.onClose}>X</div>
                 <div id="top">
                     <div>
                         <div>Login</div>

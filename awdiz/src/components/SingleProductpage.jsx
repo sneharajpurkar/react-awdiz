@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import './Homepage.css';
 import Navbar from "./Navbar"
 
@@ -7,13 +9,14 @@ const SingleProductPage = () => {
     const [singleProduct, setSingleProduct] = useState();
     console.log(singleProduct, 'singleProduct');
     const data = useParams();
+    const route = useNavigate();
 
     useEffect(() => {
         fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita")
 
             .then((res) => res.json())
             .then((Json) => Json.drinks)
-            .then((json) => json.filter((obj) => obj.idDrink === data.idDrink))
+            .then((json) => json.filter((sneha) => sneha.idDrink === data.idDrink))
             .then((data) => setSingleProduct(data[0]));
     }, [])  
     console.log(data.idDrink)

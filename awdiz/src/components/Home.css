@@ -249,6 +249,10 @@ form>div {
   font-size: 12px;
 }
 
+.close{
+  cursor: pointer;
+}
+
 /* Login */
 
 #login1 {
